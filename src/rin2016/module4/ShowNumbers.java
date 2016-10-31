@@ -4,15 +4,15 @@ import java.util.Scanner;
 public class ShowNumbers {
 
 	public static void main(String[] args) {
-		//Вывести цифры введённого числа по порядку
+		//Р’С‹РІРµСЃС‚Рё С†РёС„СЂС‹ РІРІРµРґС‘РЅРЅРѕРіРѕ С‡РёСЃР»Р° РїРѕ РїРѕСЂСЏРґРєСѓ
 		Scanner s = new Scanner(System.in);
-		System.out.print("Введите число, которое мы разобьем на цифры: ");
+		System.out.print("Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ, РєРѕС‚РѕСЂРѕРµ РјС‹ СЂР°Р·РѕР±СЊРµРј РЅР° С†РёС„СЂС‹: ");
 		int numberFromUser = s.nextInt();
 		
 		if (numberFromUser < 10) {
-			System.out.println("В числе " + numberFromUser + " одна цифра.");
+			System.out.println("Р’ С‡РёСЃР»Рµ " + numberFromUser + " РѕРґРЅР° С†РёС„СЂР°.");
 		} else if (numberFromUser >= 10) {
-			//Находим количество цифр в введенном числе
+			//РќР°С…РѕРґРёРј РєРѕР»РёС‡РµСЃС‚РІРѕ С†РёС„СЂ РІ РІРІРµРґРµРЅРЅРѕРј С‡РёСЃР»Рµ
 			int numberDigits = (int) Math.log10(numberFromUser)+1; 
 			int digitNumber = 0;
 			
@@ -20,7 +20,7 @@ public class ShowNumbers {
 				int firstDigit = numberFromUser /(int) Math.pow(10, --numberDigits);
 				firstDigit = firstDigit % 10;
 
-				System.out.println(++digitNumber + "-я цифра числа " + 
+				System.out.println(++digitNumber + "-СЏ С†РёС„СЂР° С‡РёСЃР»Р° " + 
 							numberFromUser + " = " + firstDigit);
 			}
 		}
