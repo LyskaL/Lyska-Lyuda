@@ -11,7 +11,7 @@ public class ShowNumbers {
 		
 		if (numberFromUser < 10) {
 			System.out.println("В числе " + numberFromUser + " одна цифра.");
-		} else if (numberFromUser >= 10) {
+		} else {
 			//Находим количество цифр в введенном числе
 			int numberDigits = (int) Math.log10(numberFromUser)+1; 
 			int digitNumber = 0;
