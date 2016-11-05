@@ -7,14 +7,14 @@ public class Task11_29 {
 		final int SIZE = 10;
 		int [] array = new int [SIZE];
 		
-		for(int i = 0; i < SIZE; i++) {
+		for(int i = 0; i < array.length; i++) {
 			array[i] = (int)(Math.random()*100)+1;
 		}
 		System.out.println(Arrays.toString(array));
 		
 		//a) верно ли, что сумма элементов массива есть четное число
 		int sum = 0;
-		for (int i = 0; i < SIZE; i++) {
+		for (int i = 0; i < array.length; i++) {
 			sum += array[i];
 		}
 		
@@ -26,6 +26,8 @@ public class Task11_29 {
 		
 		//b) верно ли, что сумма квадратов эллементов массива есть пятизначное число
 		int sumSquares = 0;
+		final int numberDigits = 5;
+		
 		for (int i = 0; i < array.length; i++) {
 			sumSquares += Math.pow(array[i], 2);
 		}
