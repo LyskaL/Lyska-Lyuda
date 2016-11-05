@@ -32,7 +32,7 @@ public class Task11_29 {
 			sumSquares += Math.pow(array[i], 2);
 		}
 		
-		if((int)Math.log10(sumSquares)+1 == 5) {
+		if((int)Math.log10(sumSquares)+1 == numberDigits) {
 			System.out.println("Сумма квадратов элементов массива = " 
 								+ sumSquares + " - пятизначное число.");
 		} else {
