@@ -69,13 +69,18 @@ public class Student {
 			return -1;
 		}
 	}
+
 	
-	public void show() {
-		System.out.println(getLastName() + " " + getFirstName() + " "
-				+ getMiddleName() + " " + "\t\tгруппа: " + getGroup()
-				+ "\tнадбавка: " + getAllowance());
-	}
-	
+	/*
+	 * Вернуть надбавку, которую получил студент по итоговым оценкам:
+	 * 
+	 * - Если сдал все на "отлично"(5) - возвращаем 100;
+	 * - Если сдал на "отлично" и "хорошо" (5 и 4) - возвращаем 50;
+	 * - Если сдал все на "хорошо" (4) - возвращаем 25;
+	 * - Если у студента две и меньше "удволитворительные"(3) оценки - возвращаем 0;  
+	 * - Если больше двух "удволитворительных" (3) оценок - возвращаем -1
+	 * 	 студент не получает степендию.
+	 */
 	public int getAllowance() {
 		if (counterEvaluations >= MIN_NUMBER) {
 			int excellent = 0;
@@ -98,16 +103,48 @@ public class Student {
 			
 			if (excellent == counterEvaluations) {
 				return 100;
-			} else if (excellent+good == counterEvaluations) {
-				return 50;
-			} else if (excellent+good+satisfactory == counterEvaluations 
+			} else if (excellent + good == counterEvaluations) {
+				if (good == counterEvaluations) {
+					return 25;
+				} else {
+					return 50;
+				}
+			} else if(excellent+good+satisfactory == counterEvaluations
 					&& satisfactory <= 2) {
-				return 25;
+				return 0;
+			} else {
+				return -1;
 			}
-			return 0;
 		} else {
 			return -1;
 		}
 	}
 	
+	public void showStudent() {
+		System.out.print(getLastName() + " " + getFirstName() + " "
+				+ getMiddleName() + " " + "\t\t" + getGroup());
+		showAllowance();
+		showEvaluationsToStudent();
+		System.out.println();
+	}
+	
+	public void showAllowance() {
+		int allowance = getAllowance();
+		if (allowance > 0) {
+			System.out.print("\t\tнадбавка:" + allowance + "%");
+		} else if (allowance == 0) {
+			System.out.print("\t\tбез надбавки");
+		} else if (allowance < 0) {
+			System.out.print("\t\t      -\t");
+		}
+	}
+
+	public void showEvaluationsToStudent() {
+		System.out.print("\t\t");
+		for (int i = 0; i < counterEvaluations; i++) {
+			if(getEvaluation(i) > 0) {
+				System.out.print(" " + getEvaluation(i));
+			}
+		}
+	}
 }
