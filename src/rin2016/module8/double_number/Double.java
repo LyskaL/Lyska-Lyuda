@@ -12,12 +12,20 @@ public class Double {
 	public Double(final String number) {
 		this.integer = extractAnInteger(number);
 		this.fractional = extractFractionalPart(number);
-		
-		//узнаём кол-во цифр после дробного знака(для дальнейших манипуляций с дробью)
+		howManyDigitFractional();
+	}
+	
+	public void howManyDigitFractional() {
+		// узнаём кол-во цифр после дробного знака(для дальнейших манипуляций с
+		// дробью)
 		if (numberZero == 0) {
-			this.digitFractional = (int)(Math.log10(fractional)+1);
+			this.digitFractional = (int) (Math.log10(fractional) + 1);
 		} else {
-			this.digitFractional = (int)(Math.log10(fractional)+1) + numberZero;
+			if (fractional == 0) {
+				this.digitFractional = numberZero;
+			} else {
+				this.digitFractional = (int)(Math.log10(fractional)+1) + numberZero;
+			}
 		}
 	}
 	
@@ -26,15 +34,21 @@ public class Double {
 	 */
 	public void show() {
 		if(isNumberNegative && integer == 0) {
+			//Если целая часть равна 0, но число отрицательное
+			//выводим перед числом '-'
 			System.out.print("-");
 		}
 		System.out.print(integer+".");
 		if (numberZero > 0) {
+			//Выводим количество нулей после '.'
 			for (int i = 0; i < numberZero; i++) {
 				System.out.print("0");
 			}
 		}
-		System.out.print(fractional);
+		// Выводим дробную часть
+		if (fractional > 0) {
+			System.out.print(fractional);
+		}
 	}
 	
 	/*
@@ -74,8 +88,7 @@ public class Double {
 			this.integer += number;
 			if (fractional > 0) {
 				this.integer -= 1;
-				this.fractional = (1*(int)Math.pow(10, digitFractional)) - fractional;
-				numberZero = digitFractional - (int)(Math.log10(fractional)+1);
+				calculateFractional();
 			}
 		} else {
 			this.integer += number;
@@ -85,36 +98,66 @@ public class Double {
 		}
 	}
 	
-	public void difference(int number) {
-		if(integer >=  number) {
-			this.integer -= number;
-		} else if (number < 0){
-			// Если передали отрицательное число 
-			// '-' на '-'даёт '+' вызываем метод сложения
-//считает не правильно
-			sum(Math.abs(number));
-		} else {
-			number -= integer;
-			if (isNumberNegative) {
-				this.integer = -number;
+	public void difference(final int number) {
+		if (isNumberNegative) {
+			//Если число от которого мы отнимаем отрицательное, выполняется эта логика
+			if(number > 0) {
+				if(integer <= number || integer == 0) {
+					this.integer -= number;
+				} else {
+					this.integer -= number;
+					isNumberNegative();
+					this.integer += 1;
+					calculateFractional();
+				}
 			} else {
-				if (fractional > 0) {
-					number -= 1;
-					this.integer = -number;
-					this.fractional = (1*(int)Math.pow(10, digitFractional)) - fractional;
-					numberZero = digitFractional - (int)(Math.log10(fractional)+1);
+				if(integer <= number) {
+					this.integer += Math.abs(number);
+				} else {
+					this.integer += Math.abs(number);
+					isNumberNegative();
+					this.integer -= 1;
+					calculateFractional();
+				}
+			}
+		} else {
+			if(number > 0) {
+				if(integer >= number || integer == 0) {
+					this.integer -= number;
+				} else {
+					this.integer -= number;
+					if (fractional > 0) {
+						isNumberNegative();
+						this.integer += 1;
+						calculateFractional();
+					}
+				}
+			} else {
+				if(integer >= number) {
+					this.integer += Math.abs(number);
+				} else {
+					this.integer += Math.abs(number);
+					if (fractional > 0) {
+						isNumberNegative();
+						this.integer -= 1;
+						calculateFractional();
+					}
 				}
 			}
 		}
 	}
 	
-	public void product(final int number) {
-		this.integer *= number;
-		this.fractional *= number;
-		if ((int)(Math.log10(fractional)+1) > digitFractional) {
-			this.integer += Math.round(fractional/(10*digitFractional));
-		}
+	private void calculateFractional() {
+		this.fractional = (1*(int)Math.pow(10, digitFractional)) - fractional;
+		numberZero = digitFractional - (int)(Math.log10(fractional)+1);
 	}
 	
-	
+	private void isNumberNegative() {
+		if (this.integer > 0) {
+			isNumberNegative = false;
+		} else {
+			isNumberNegative = true;
+		}
+		
+	}
 }
