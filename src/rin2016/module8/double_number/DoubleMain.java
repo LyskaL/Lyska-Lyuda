@@ -4,15 +4,15 @@ import java.util.Scanner;
 public class DoubleMain {
 
 	public static void main(final String[] args) {
-		Scanner scanner = new Scanner(System.in);
+	/*	Scanner scanner = new Scanner(System.in);
 		System.out.print("Введите дробное число: ");
-		String number = scanner.nextLine();
+		String number = scanner.nextLine();*/
 		
-		Double ourNumber = new Double(number);
-		ourNumber.sum(15);
+		Double ourNumber = new Double("14.04");
+		ourNumber.difference(-15);
 		ourNumber.show();
 		
-		scanner.close();
+		//scanner.close();
 	}
 
 }

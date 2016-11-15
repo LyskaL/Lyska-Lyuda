@@ -83,75 +83,49 @@ public class Double {
 	}
 	
 	public void sum(final int number) {
-		//программа считает не правильно, если передадут отрицательно число
-		if(isNumberNegative && Math.abs(integer)<number) {
-			this.integer += number;
-			if (fractional > 0) {
-				this.integer -= 1;
-				calculateFractional();
+		if(isNumberNegative) {
+			if(number > 0) {
+				ifLargerNumber(number);
+			} else {
+				//ifLessNumber(number);
+				ifLargerNumber(number);
 			}
 		} else {
-			this.integer += number;
-			if (integer >= 0) {
-				isNumberNegative = false;
+			if(number > 0) {
+				this.integer+=number;
+			} else {
+				ifLessNumber(Math.abs(number));
 			}
 		}
 	}
 	
 	public void difference(final int number) {
 		if (isNumberNegative) {
-			//Если число от которого мы отнимаем отрицательное, выполняется эта логика
 			if(number > 0) {
-				if(integer <= number || integer == 0) {
-					this.integer -= number;
-				} else {
-					this.integer -= number;
-					isNumberNegative();
-					this.integer += 1;
-					calculateFractional();
-				}
+				isOurNumberLess(number);
 			} else {
-				if(integer <= number) {
-					this.integer += Math.abs(number);
-				} else {
-					this.integer += Math.abs(number);
-					isNumberNegative();
-					this.integer -= 1;
-					calculateFractional();
-				}
+				isOurNumberLarger(number);
 			}
 		} else {
 			if(number > 0) {
-				if(integer >= number || integer == 0) {
-					this.integer -= number;
-				} else {
-					this.integer -= number;
-					if (fractional > 0) {
-						isNumberNegative();
-						this.integer += 1;
-						calculateFractional();
-					}
-				}
+				ifLessNumber(number);
 			} else {
-				if(integer >= number) {
-					this.integer += Math.abs(number);
-				} else {
-					this.integer += Math.abs(number);
-					if (fractional > 0) {
-						isNumberNegative();
-						this.integer -= 1;
-						calculateFractional();
-					}
-				}
+				ifLessNumber(number);
 			}
 		}
 	}
 	
+	/*
+	 * Высчитываем изменения в дробной части
+	 */
 	private void calculateFractional() {
 		this.fractional = (1*(int)Math.pow(10, digitFractional)) - fractional;
 		numberZero = digitFractional - (int)(Math.log10(fractional)+1);
 	}
 	
+	/*
+	 * Проверяем изменился ли знак у нашего числа
+	 */
 	private void isNumberNegative() {
 		if (this.integer > 0) {
 			isNumberNegative = false;
@@ -159,5 +133,69 @@ public class Double {
 			isNumberNegative = true;
 		}
 		
+	}
+	
+	/*
+	 * Если пришедшее число для сложения меньше нашего.
+	 * Высчитываем целую часть и дробную (если необходимо)
+	 */
+	private void ifLargerNumber(final int number) {
+		if(integer >= number) {
+			this.integer += number;
+		} else {
+			this.integer += number;
+			if (fractional > 0) {
+				isNumberNegative();
+				this.integer -= 1;
+				calculateFractional();
+			}
+		}
+	}
+	
+	/*
+	 * Если пришедшее число для сложения больше нашего.
+	 * Высчитываем целую часть и дробную (если необходимо)
+	 */
+	private void isOurNumberLarger(final int number) {
+		if(integer <= number) {
+			this.integer += Math.abs(number);
+		} else {
+			this.integer += Math.abs(number);
+			isNumberNegative();
+			this.integer -= 1;
+			calculateFractional();
+		}
+	}
+	
+	/*
+	 * Если пришедшее число для вычитания меньше нашего.
+	 * Высчитываем целую часть и дробную (если необходимо)
+	 */
+	private void ifLessNumber(final int number) {
+		if(integer >= number || integer == 0) {
+			this.integer -= number;
+		} else {
+			this.integer -= number;
+			if (fractional > 0) {
+				isNumberNegative();
+				this.integer += 1;
+				calculateFractional();
+			}
+		}
+	}
+	
+	/*
+	 * Если пришедшее число для вычитания больше нашего.
+	 * Высчитываем целую часть и дробную (если необходимо)
+	 */
+	private void isOurNumberLess(final int number) {
+		if(integer <= number || integer == 0) {
+			this.integer -= number;
+		} else {
+			this.integer -= number;
+			isNumberNegative();
+			this.integer += 1;
+			calculateFractional();
+		}
 	}
 }
