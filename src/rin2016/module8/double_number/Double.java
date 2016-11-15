@@ -15,7 +15,7 @@ public class Double {
 		howManyDigitFractional();
 	}
 	
-	public void howManyDigitFractional() {
+	private void howManyDigitFractional() {
 		// узнаём кол-во цифр после дробного знака(для дальнейших манипуляций с
 		// дробью)
 		if (numberZero == 0) {
@@ -54,7 +54,7 @@ public class Double {
 	/*
 	 * Извлекаем из строки number целое число 
 	 */
-	public int extractAnInteger(final String number) {
+	private int extractAnInteger(final String number) {
 		String temp = number.substring(0, number.indexOf('.'));
 		if(number.charAt(0) == '-') {
 			isNumberNegative = true;
@@ -66,7 +66,7 @@ public class Double {
 	 * Извлекаем из строки number дробное число. 
 	 * Если после запятой идут нули, считаем их кол-во.
 	 */
-	public int extractFractionalPart(final String number) {
+	private int extractFractionalPart(final String number) {
 		String temp = number.substring(number.indexOf('.')+1, number.length());
 		if (temp.length() > 1) {
 			int counterZero = 0;
@@ -84,12 +84,7 @@ public class Double {
 	
 	public void sum(final int number) {
 		if(isNumberNegative) {
-			if(number > 0) {
-				ifLargerNumber(number);
-			} else {
-				//ifLessNumber(number);
-				ifLargerNumber(number);
-			}
+			ifLargerNumber(number);
 		} else {
 			if(number > 0) {
 				this.integer+=number;
@@ -107,11 +102,29 @@ public class Double {
 				isOurNumberLarger(number);
 			}
 		} else {
-			if(number > 0) {
-				ifLessNumber(number);
-			} else {
-				ifLessNumber(number);
+			ifLessNumber(number);
+		}
+	}
+	
+	public void multiplication(final int number) {
+		if(number != 0){
+			if(integer != 0) {
+				this.integer *= number;
+				if(fractional != 0) {
+					this.fractional *= number;
+					if((int)(Math.log10(fractional)+1) != digitFractional) {
+						int index = fractional/(1*(int)Math.pow(10, digitFractional));
+						this.integer += index;
+						this.fractional = Math.abs((index*(int)Math.pow(10, digitFractional)) - fractional);
+						numberZero = digitFractional - (int)(Math.log10(fractional)+1);
+					}
+				}
 			}
+		} else {
+			this.integer = 0;
+			this.fractional = 0;
+			numberZero = 2;
+			digitFractional = 2;
 		}
 	}
 	
@@ -175,12 +188,7 @@ public class Double {
 		if(integer >= number || integer == 0) {
 			this.integer -= number;
 		} else {
-			this.integer -= number;
-			if (fractional > 0) {
-				isNumberNegative();
-				this.integer += 1;
-				calculateFractional();
-			}
+			subtractionFractions(number);
 		}
 	}
 	
@@ -192,7 +200,16 @@ public class Double {
 		if(integer <= number || integer == 0) {
 			this.integer -= number;
 		} else {
-			this.integer -= number;
+			subtractionFractions(number);
+		}
+	}
+	
+	/*
+	 * Высчитываем целую часть и новую дробную
+	 */
+	private void subtractionFractions(final int number) {
+		this.integer -= number;
+		if (fractional > 0) {
 			isNumberNegative();
 			this.integer += 1;
 			calculateFractional();

@@ -8,8 +8,8 @@ public class DoubleMain {
 		System.out.print("Введите дробное число: ");
 		String number = scanner.nextLine();*/
 		
-		Double ourNumber = new Double("14.04");
-		ourNumber.difference(-15);
+		Double ourNumber = new Double("2.02");
+		ourNumber.difference(6);
 		ourNumber.show();
 		
 		//scanner.close();
