@@ -129,6 +129,36 @@ public class Double {
 	}
 	
 	/*
+	 * Спавниваем наше число с пришедшим. Возвращаем:
+	 * 1 - если integer больше number;
+	 * 0 - если числа равны;
+	 * -1 - если integer меньше number.
+	 */
+	private int compare(final int number) {
+		if (integer > number) {
+			return 1;
+		} else if (integer == number && fractional == 0) {
+			return 0;
+		} else {
+			return -1;
+		}
+	}
+	
+	public void showCompare(final int number) {
+		int result = compare(number);
+		if(result > 0) {
+			show();
+			System.out.println(" больше " + number);
+		} else if (result < 0) {
+			show();
+			System.out.println(" меньше " + number);
+		} else {
+			System.out.println("Числа равны!");
+		}
+		
+	}
+	
+	/*
 	 * Высчитываем изменения в дробной части
 	 */
 	private void calculateFractional() {
@@ -157,11 +187,7 @@ public class Double {
 			this.integer += number;
 		} else {
 			this.integer += number;
-			if (fractional > 0) {
-				isNumberNegative();
-				this.integer -= 1;
-				calculateFractional();
-			}
+			additionFractions(number);
 		}
 	}
 	
@@ -174,9 +200,7 @@ public class Double {
 			this.integer += Math.abs(number);
 		} else {
 			this.integer += Math.abs(number);
-			isNumberNegative();
-			this.integer -= 1;
-			calculateFractional();
+			additionFractions(number);
 		}
 	}
 	
@@ -205,13 +229,24 @@ public class Double {
 	}
 	
 	/*
-	 * Высчитываем целую часть и новую дробную
+	 * Высчитываем целую часть и новую дробную при вычитании
 	 */
 	private void subtractionFractions(final int number) {
 		this.integer -= number;
 		if (fractional > 0) {
 			isNumberNegative();
 			this.integer += 1;
+			calculateFractional();
+		}
+	}
+	
+	/*
+	 * Высчитываем новую дробную часть при сложении
+	 */
+	private void additionFractions(final int number) {
+		if (fractional > 0) {
+			isNumberNegative();
+			this.integer -= 1;
 			calculateFractional();
 		}
 	}
