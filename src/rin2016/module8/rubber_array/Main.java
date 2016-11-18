@@ -1,5 +1,7 @@
 package rin2016.module8.rubber_array;
 
+import java.util.Arrays;
+
 public class Main {
 
 	public static void main(final String[] args) {
@@ -9,6 +11,7 @@ public class Main {
 		for (int i = 0; i < array.length(); i++) {
 			array.add((int)(Math.random()*size), i);
 		}
+		System.out.println("\nНаш массив: ");
 		show(array);
 		System.out.println("Размер массива: " + array.length());
 		
@@ -16,19 +19,25 @@ public class Main {
 		for(int i = 0; i < size; i++) {
 			secondArray[i] = (int)(Math.random()*size);
 		}
+		
+		System.out.println("\nНовый массив: " + Arrays.toString(secondArray) 
+				+ "\nПриклеили к старому, получили: ");
+		
 		array.concat(secondArray);
 		show(array);
 		
+		System.out.println("\nОтсортировали массив по возрастанию: ");
 		array.sort(1);
 		show(array);
-		array.removeAllElements(array.getElement(0));
+		
+		System.out.println("\nУдалили элементы с 1 по 10 индексы: ");
+		array.remove(1, 10);
 		show(array);
 		
 		
 	}
 	
 	public static void show(final Array array) {
-		System.out.println();
 		for (int i = 0; i < array.length(); i++) {
 			System.out.print(array.getElement(i) + " ");
 		}

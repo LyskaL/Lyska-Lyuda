@@ -2,11 +2,14 @@ package rin2016.module8.rubber_array;
 
 public class Array {
 	private int[] array;
+	private int size;
+	private int length;
 	
 	public final int SEARCH_ERROR = -1;
 	
 	public Array() {
 		create(0);
+		
 	}
 	
 	public Array(final int size) {
@@ -15,10 +18,12 @@ public class Array {
 	
 	private void create(final int size) {
 		this.array = new int[size];
+		this.size = size;
+		this.length = size;
 	}
 	
 	public int getElement(final int index) {
-		if(index <= array.length && index >= 0) {
+		if(index <= length && index >= 0) {
 			return array[index];
 		}
 		return Integer.MIN_VALUE;
@@ -29,26 +34,30 @@ public class Array {
 	}
 	
 	public int length() {
-		return array.length;
+		return this.length;
 	}
 	
 	/*
 	 * Добавляем элемент в конец массива
 	 */
 	public void add(final int element) {
-		add(element, array.length);
+		add(element, length);
 	}
 	
 	/*
 	 * Добавляем элемент в массив (по индексу)
 	 */
 	public void add(final int element, final int index) {
-		if (index >= array.length) {
-			int newSize = length() + (index-(array.length-1));
+		if (index >= this.size) {
+			int newSize = length*2;
+			
 			newSizeArray(newSize);
 			this.array[index] = element;
+		} else if (index >= array.length && index < this.size) {
+			this.length++;
+			this.array[index] = element;
 		} else if(index < array.length && index >= 0) {
-			array[index] = element;
+			this.array[index] = element;
 		}
 	}
 	
@@ -65,8 +74,9 @@ public class Array {
 	
 	private void newSizeArray(final int newSize) {
 		int[] result = new int[newSize];
-		if(newSize >= array.length) {
-			this.array = copy(result, array, array.length);
+		this.size = newSize;
+		if(newSize >= length) {
+			this.array = copy(result, array, length);
 		} else {
 			this.array = copy(result, array, newSize);
 		}
@@ -77,7 +87,7 @@ public class Array {
 	 * или возвращает -1, если такого элемента в массиве нет 
 	 */
 	public int getIndex(final int element) {
-		for (int i = 0; i < array.length; i++) {
+		for (int i = 0; i < length; i++) {
 			if(array[i] == element) {
 				return i;
 			}
@@ -91,7 +101,7 @@ public class Array {
 	public void removeAllElements(final int element) {
 		int index = getIndex(element);
 		if (index != SEARCH_ERROR) {
-			for (int i = index; i < array.length; i++) {
+			for (int i = index; i < length; i++) {
 				if (array[i] == element) {
 					remove(i);
 					i--;
@@ -101,10 +111,10 @@ public class Array {
 	}
 
 	public void remove(final int index) {
-		for (int i = index; i < array.length-1; i++) {
+		for (int i = index; i < length-1; i++) {
 			array[i] = array[i+1];
 		}
-		newSizeArray(array.length-1);
+		this.length--;
 	}
 	
 	/*
@@ -116,7 +126,7 @@ public class Array {
 		for (int i = fIndex; i < array.length-temp; i++) {
 			array[i] = array[i+temp];
 		}
-		newSizeArray(array.length-temp);
+		this.length -= temp;
 	}
 	
 	public void remove(final int[] sArray) {
@@ -143,11 +153,16 @@ public class Array {
 	}
 	
 	public void concat(final int[] secondArray) {
-		int newSize = array.length + secondArray.length;
-		int index = array.length;
+		int newLength = length + secondArray.length;
+		int index = length;
 		int counter = 0;
-		newSizeArray(newSize);
-		for (int i = index ; i < array.length; i++) {
+		
+		if(newLength >= this.size) {
+			newSizeArray(newLength*2);
+		}
+		
+		this.length += secondArray.length;
+		for (int i = index ; i < length; i++) {
 			array[i] = secondArray[counter++];
 		}
 	}
@@ -157,7 +172,7 @@ public class Array {
 	 * Если подмассив не найден вернёт -1.
 	 */
 	private int findLastIndex(final int[] sArray, final int index, int counter) {
-		for (int j = index+1; j < array.length+1; j++) {
+		for (int j = index+1; j < length+1; j++) {
 			if(counter == sArray.length) {
 				return index+counter;
 			} else {
@@ -178,8 +193,8 @@ public class Array {
 	 * Если в метод передать (-1), то сортирует по убыванию.
 	 */
 	public void sort(final int arg) {
-		for(int i = 0; i < array.length; i++){
-			for (int j = array.length-1; j > i; j--) {
+		for(int i = 0; i < length; i++){
+			for (int j = length-1; j > i; j--) {
 				if(arg == 1) {
 					if (array[i] > array[j]) {
 						swap(i, j);
