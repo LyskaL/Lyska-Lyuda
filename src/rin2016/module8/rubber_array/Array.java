@@ -17,9 +17,15 @@ public class Array {
 	}
 	
 	private void create(final int size) {
-		this.array = new int[size];
-		this.size = size;
-		this.length = size;
+		if (size >= 0) {
+			this.array = new int[size];
+			this.size = size;
+			this.length = size;
+		} else {
+			this.array = new int[0];
+			this.size = 0;
+			this.length = 0;
+		}
 	}
 	
 	public int getElement(final int index) {

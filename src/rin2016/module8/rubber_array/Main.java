@@ -15,7 +15,14 @@ public class Main {
 		show(array);
 		System.out.println("Размер массива: " + array.length());
 		
-		int[] secondArray = new int[size];
+		int[] secondArray;
+		
+		if (size >= 0) {
+			secondArray = new int[size];
+		} else {
+			secondArray = new int[0];
+		}
+		
 		for(int i = 0; i < size; i++) {
 			secondArray[i] = (int)(Math.random()*size);
 		}
