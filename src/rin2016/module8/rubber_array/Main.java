@@ -9,7 +9,7 @@ public class Main {
 		for (int i = 0; i < array.length(); i++) {
 			array.add((int)(Math.random()*size), i);
 		}
-		array.show();
+		show(array);
 		System.out.println("Размер массива: " + array.length());
 		
 		int[] secondArray = new int[size];
@@ -17,14 +17,22 @@ public class Main {
 			secondArray[i] = (int)(Math.random()*size);
 		}
 		array.concat(secondArray);
-		array.show();
+		show(array);
 		
 		array.sort(1);
-		array.show();
+		show(array);
 		array.removeAllElements(array.getElement(0));
-		array.show();
+		show(array);
 		
 		
+	}
+	
+	public static void show(final Array array) {
+		System.out.println();
+		for (int i = 0; i < array.length(); i++) {
+			System.out.print(array.getElement(i) + " ");
+		}
+		System.out.println();
 	}
 
 }

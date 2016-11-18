@@ -3,6 +3,8 @@ package rin2016.module8.rubber_array;
 public class Array {
 	private int[] array;
 	
+	public final int SEARCH_ERROR = -1;
+	
 	public Array() {
 		create(0);
 	}
@@ -13,14 +15,6 @@ public class Array {
 	
 	private void create(final int size) {
 		this.array = new int[size];
-	}
-	
-	public void show() {
-		System.out.println();
-		for (int i = 0; i < array.length; i++) {
-			System.out.print(array[i] + " ");
-		}
-		System.out.println();
 	}
 	
 	public int getElement(final int index) {
@@ -88,7 +82,7 @@ public class Array {
 				return i;
 			}
 		}
-		return -1;
+		return SEARCH_ERROR;
 	}
 	
 	/*
@@ -96,7 +90,7 @@ public class Array {
 	 */
 	public void removeAllElements(final int element) {
 		int index = getIndex(element);
-		if (index != -1) {
+		if (index != SEARCH_ERROR) {
 			for (int i = index; i < array.length; i++) {
 				if (array[i] == element) {
 					remove(i);
@@ -128,12 +122,12 @@ public class Array {
 	public void remove(final int[] sArray) {
 		int index = getIndex(sArray[0]);
 		int counter = 0;
-		if (index != -1) {
+		if (index != SEARCH_ERROR) {
 			for (int i = index; i < array.length; i++) {
 				if(array[i] == sArray[counter]) {
 					counter++;
 					int sIndex = findLastIndex(sArray, i, counter);
-					if(sIndex != -1) {
+					if(sIndex != SEARCH_ERROR) {
 						remove(i, sIndex);
 						counter = 0;
 						i--;
@@ -170,11 +164,11 @@ public class Array {
 				if(array[j] == sArray[counter]) {
 					counter++;
 				} else {
-					return -1;
+					return SEARCH_ERROR;
 				}
 			}
 		}
-		return -1;
+		return SEARCH_ERROR;
 	}
 	
 	/*
