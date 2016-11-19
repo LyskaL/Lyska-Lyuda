@@ -42,13 +42,9 @@ public class ListReaders {
 
 	public void addReader(final String lastName, final String firstName, 
 			final String middleName, final String birthDate) {
-		//TODO проверить нет ли студента с таким именем в массиве
 		if(size > 0) {
 			for (int i = 0; i < size; i++) {
-				if(readers[i].getLastName().compareTo(lastName) == 0 
-					&& readers[i].getFirstName().compareTo(firstName) == 0 
-					&& readers[i].getMiddleName().compareTo(middleName) == 0
-					&& readers[i].getBirthDate().compareTo(birthDate) == 0) {
+				if(equalReaders(readers[i], lastName, firstName, middleName, birthDate)) {
 					return;
 				}
 			}
@@ -59,6 +55,18 @@ public class ListReaders {
 		readers[size] = new Reader(lastName, firstName, middleName, birthDate);
 		readers[size].setNumber(generateNumberOfLibraryCard());
 		size++;
+	}
+	
+	private boolean equalReaders(final Reader reader, final String lastName, 
+			final String firstName, final String middleName, final String birthDate) {
+		if(reader.getLastName().compareTo(lastName) == 0 
+				&& reader.getFirstName().compareTo(firstName) == 0 
+				&& reader.getMiddleName().compareTo(middleName) == 0
+				&& reader.getBirthDate().compareTo(birthDate) == 0) {
+				return true;
+			} else {
+				return false;
+			}
 	}
 	
 	private void changeSizeOfArray(final Reader[] copyReaders, final int newSize) {
