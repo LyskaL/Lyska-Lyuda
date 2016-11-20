@@ -47,7 +47,11 @@ public class Array {
 	 * Добавляем элемент в конец массива
 	 */
 	public void add(final int element) {
-		this.array[size++] = element;
+		if (size == 0) {
+			this.array[size++] = element;
+		} else {
+			add(element, size);
+		}
 	}
 	
 	/*
