@@ -62,10 +62,7 @@ public class Array {
 			int sizeArray = array.length-1;
 			if (index >= sizeArray) {
 				int newSize = array.length * 2;
-				newSizeArray(newSize);
-			}
-			for (int i = size; i >= index; i--) {
-				this.array[i + 1] = array[i];
+				newSizeArray(newSize, index);
 			}
 			this.array[index] = element;
 			this.size++;
@@ -85,12 +82,17 @@ public class Array {
 		return firstArray;
 	}
 	
-	private void newSizeArray(final int newSize) {
+	private void newSizeArray(final int newSize, final int index) {
 		int[] result = new int[newSize];
 		if(newSize >= this.size) {
 			this.array = copy(result, array, this.size);
 		} else {
 			this.array = copy(result, array, newSize);
+		}
+		if (index < size) {
+			for (int i = size; i >= index; i--) {
+				this.array[i + 1] = array[i];
+			}
 		}
 	}
 	
@@ -177,7 +179,7 @@ public class Array {
 			int counter = 0;
 			
 			if(newLength >= this.array.length) {
-				newSizeArray(newLength*2);
+				newSizeArray(newLength*2, size);
 			}
 			
 			this.size += secondArray.length;
