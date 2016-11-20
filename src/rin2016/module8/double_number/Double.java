@@ -97,9 +97,9 @@ public class Double {
 	public void difference(final int number) {
 		if (isNumberNegative) {
 			if(number > 0) {
-				isOurNumberLess(number);
+				ifOurNumberLess(number);
 			} else {
-				isOurNumberLarger(number);
+				ifOurNumberLarger(number);
 			}
 		} else {
 			ifLessNumber(number);
@@ -169,7 +169,7 @@ public class Double {
 	/*
 	 * Проверяем изменился ли знак у нашего числа
 	 */
-	private void isNumberNegative() {
+	private void checkNumberNegative() {
 		if (this.integer > 0) {
 			isNumberNegative = false;
 		} else {
@@ -195,7 +195,7 @@ public class Double {
 	 * Если пришедшее число для сложения больше нашего.
 	 * Высчитываем целую часть и дробную (если необходимо)
 	 */
-	private void isOurNumberLarger(final int number) {
+	private void ifOurNumberLarger(final int number) {
 		if(integer <= number) {
 			this.integer += Math.abs(number);
 		} else {
@@ -220,7 +220,7 @@ public class Double {
 	 * Если пришедшее число для вычитания больше нашего.
 	 * Высчитываем целую часть и дробную (если необходимо)
 	 */
-	private void isOurNumberLess(final int number) {
+	private void ifOurNumberLess(final int number) {
 		if(integer <= number || integer == 0) {
 			this.integer -= number;
 		} else {
@@ -234,7 +234,7 @@ public class Double {
 	private void subtractionFractions(final int number) {
 		this.integer -= number;
 		if (fractional > 0) {
-			isNumberNegative();
+			checkNumberNegative();
 			this.integer += 1;
 			calculateFractional();
 		}
@@ -245,7 +245,7 @@ public class Double {
 	 */
 	private void additionFractions(final int number) {
 		if (fractional > 0) {
-			isNumberNegative();
+			checkNumberNegative();
 			this.integer -= 1;
 			calculateFractional();
 		}
