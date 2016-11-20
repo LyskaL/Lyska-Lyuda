@@ -13,6 +13,12 @@ public class Student {
 	
 	public Student (final String firstName, final String lastName, 
 			final String middleName, final int group) {
+		if (firstName == null || firstName == ""
+				&& lastName == null || lastName == "" 
+				&& middleName == null || middleName == ""
+				&& group <= 0) {
+			return;
+		}
 		setFirstName(firstName);
 		setLastName(lastName);
 		setMiddleName(middleName);
