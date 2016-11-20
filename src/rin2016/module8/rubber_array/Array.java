@@ -2,7 +2,6 @@ package rin2016.module8.rubber_array;
 
 public class Array {
 	private int[] array;
-	
 	private int size;
 	
 	public final static int SEARCH_ERROR = -1;
@@ -35,7 +34,9 @@ public class Array {
 	}
 	
 	private int[] getArray() {
-		return array;
+		int[] result = new int [size];
+		copy(result, array, size);
+		return result;
 	}
 	
 	public int size() {
