@@ -1,5 +1,11 @@
 package rin2016.module8.rectangle;
 
+/**
+ * В классе содержатся статические методы
+ * для вывода фигуры на консоль.
+ * 
+ * @author Люся
+ */
 public class ShowRectangle {
 	
 	public static void show(final Rectangle rectangle) {
