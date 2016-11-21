@@ -21,8 +21,8 @@ public class Rectangle {
 		}
 	}
 	
-	private void init(final int x1, final int x2,
-			final int y1, final int y2) {
+	private void init(final int x1, final int y1,
+			final int x2, final int y2) {
 		setTopLeft(new Point(x1, y1));
 		setBottomRight(new Point(x2, y2));
 	}
@@ -59,7 +59,7 @@ public class Rectangle {
 	}
 	
 	public int length() {
-		return (topLeft.getX() - bottomRight.getX());
+		return Math.abs((topLeft.getX() - bottomRight.getX()));
 	}
 	
 	public int width() {
@@ -70,15 +70,32 @@ public class Rectangle {
 		if(rectangle == null) {
 			return false;
 		}
-		int recX1 = rectangle.getTopLeft().getX();
-		int recY1 = rectangle.getTopLeft().getX();
-		int recX2 = rectangle.getBottomRight().getX();
-		int recY2 = rectangle.getBottomRight().getX();
+		int recBottomLeftX = rectangle.getBottomRight().getX() - rectangle.length();
+		int recTopRightY = rectangle.width() + rectangle.getBottomRight().getY();
 		
-		//TODO
-		
-		return true;
+		if (isPointInRectangle(recBottomLeftX, rectangle.getBottomRight().getY()) ||
+				isPointInRectangle(rectangle.getBottomRight().getX(), recTopRightY)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
+	public boolean isPointInRectangle(final Point point){
+		if(point == null) {
+			return false;
+		}
+		
+		return isPointInRectangle(point.getX(), point.getY());
+	}
 	
+	public boolean isPointInRectangle(final int x, final int y){
+		boolean compareX = (x <= bottomRight.getX() && x >= topLeft.getX());
+		boolean compareY = (y >= bottomRight.getY() && y <= topLeft.getY());
+		if (compareX && compareY) {
+					return true;
+				} else {
+					return false;
+				}
+	}
 }
