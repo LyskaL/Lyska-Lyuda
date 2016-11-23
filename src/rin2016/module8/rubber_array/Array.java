@@ -47,39 +47,37 @@ public class Array {
 	 * Добавляем элемент в конец массива
 	 */
 	public void add(final int element) {
-		if (size == 0) {
-			this.array[size++] = element;
-		} else {
-			add(element, size);
+		if (size < 0) {
+			size = 0;
 		}
+		add(element, size);
 	}
 	
 	/*
 	 * Добавляем элемент в массив (по индексу)
 	 */
 	public void add(final int element, final int index) {
-		if (index > 0 && index <= size) {
+		if (index >= 0 && index <= size) {
 			int sizeArray = array.length-1;
 			if (index >= sizeArray) {
-				int newSize = array.length * 2;
-				newSizeArray(newSize, index);
+				sizeArray = array.length * 2;
 			}
+			newSizeArray(sizeArray+1, index);
 			this.array[index] = element;
 			this.size++;
 		}
 	}
 	
 	
-	
-	private int[] copy(final int[] firstArray, 
-			final int[] secondArray, final int size) {
-		if (secondArray.length != 0) {
+	private int[] copy(final int[] toArray, 
+			final int[] fromArray, final int size) {
+		if (fromArray.length != 0) {
 			int counter = 0;
 			for (int i = 0; i < size; i++) {
-				firstArray[i] = secondArray[counter++];
+				toArray[i] = fromArray[counter++];
 			}
 		}
-		return firstArray;
+		return toArray;
 	}
 	
 	private void newSizeArray(final int newSize, final int index) {
@@ -137,11 +135,11 @@ public class Array {
 	 * Удаляем элементы из массива с первого 
 	 * по второй индекс (не включая его).
 	 */
-	public void remove(final int fIndex, final int sIndex) {
-		if (fIndex >= 0 && sIndex >= 0 
-				&& fIndex < this.size && sIndex < this.size) {
-			int temp = sIndex - fIndex;
-			for (int i = fIndex; i < size-temp; i++) {
+	public void remove(final int fromIndex, final int toIndex) {
+		if (fromIndex >= 0 && toIndex >= 0 
+				&& fromIndex < this.size && toIndex < this.size) {
+			int temp = toIndex - fromIndex;
+			for (int i = fromIndex; i < size-temp; i++) {
 				array[i] = array[i+temp];
 			}
 			this.size -= temp;
@@ -189,12 +187,20 @@ public class Array {
 		}
 	}
 	
-	/*
-	 * Находим подмассив в массиве и возвращаем индекс последнего элемента.
-	 * Если подмассив не найден вернёт -1.
+	/**
+	 * Находим подмассив в массиве и возвращаем индекс его последнего элемента.
+	 * 
+	 * @param sArray - подмассив, который мы ищем в нашем массиве
+	 * @param index - индекс элемента с которого ведём поиск
+	 * @param counter - индекс подмассива с которого идёт поиск.
+	 * 
+	 * @return 
+	 * - Если подмассив найден в нашем массиве - вернёт индекс 
+	 * последнего элемента;
+	 * - Если подмассив не найден вернёт SEARCH_ERROR(-1).
 	 */
 	private int findLastIndex(final int[] sArray, final int index, int counter) {
-		if (sArray != null){
+		if (sArray != null && index >= 0 && counter >= 0){
 			for (int j = index+1; j < size+1; j++) {
 				if(counter == sArray.length) {
 					return index+counter;
