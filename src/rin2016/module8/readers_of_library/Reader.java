@@ -17,6 +17,8 @@ public class Reader {
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.setBirthDate(birthDate);
+		this.faculty = "";
+		this.phoneNumber = "";
 	}
 	
 	public String getLastName() {

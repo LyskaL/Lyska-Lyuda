@@ -10,14 +10,12 @@ public class MainReaders {
 		
 		list.addReader("Ищенко", "Денис", "Петрович", "18.11.1991");
 		list.getReader(1).setFaculty("Юридический");
-		list.getReader(1).setPhoneNumber("+38095444503");
+		
 		
 		list.addReader("Ищенко", "Юлия", "Петровна", "10.01.1996");
 		list.getReader(2).setFaculty("Юридический");
 		list.getReader(2).setPhoneNumber("+38097435591");
 		
-		list.addReader("Лыска", "Людмила", "Юрьевна", "13.04.1993");
-		// TODO если обратится в 3 элемент массива выдаст ошибку
 		
 		showList(list);
 		System.out.println("Нашли читателя: ");
