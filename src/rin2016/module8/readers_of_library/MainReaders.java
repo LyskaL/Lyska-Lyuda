@@ -4,9 +4,9 @@ public class MainReaders {
 
 	public static void main(final String[] args) {
 		ListReaders list = new ListReaders(5);
-		list.addReader("Лыска", "Людмила", "Юрьевна", "13.04.1993");
+		list.addReader(null, "Людмила", "Юрьевна", "13.04.1993");
 		list.getReader(0).setFaculty("Компьютерных технологий");
-		list.getReader(0).setPhoneNumber("+38063100003");
+		list.getReader(0).setPhoneNumber("+45063100073");
 		
 		list.addReader("Ищенко", "Денис", "Петрович", "18.11.1991");
 		list.getReader(1).setFaculty("Юридический");
