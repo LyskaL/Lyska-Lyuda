@@ -21,16 +21,19 @@ public class ListReaders {
 
 	private String generateNumberOfLibraryCard() {
 		String number = String.valueOf((int)(Math.random()*(999999-100000))+100000);
-		if (size > 0) {
-			for (int i = 0; i < size; i++) {
-				//Проверяем, чтобы не сгенирировался номер, который уже
-				//присвоен одному из читателей
-				if (readers[i].getNumberOfLibraryCard().compareTo(number) == 0) {
-					generateNumberOfLibraryCard();
+		while(true) {
+			if (size > 0) {
+				for (int i = 0; i < size; i++) {
+					//Проверяем, чтобы не сгенирировался номер, который уже
+					//присвоен одному из читателей
+					if (readers[i].getNumberOfLibraryCard().compareTo(number) == 0) {
+						number = String.valueOf((int)(Math.random()*(999999-100000))+100000);
+						continue;
+					}
 				}
 			}
+			return number;
 		}
-		return number;
 	}
 	
 	public Reader getReader(final int index) {
