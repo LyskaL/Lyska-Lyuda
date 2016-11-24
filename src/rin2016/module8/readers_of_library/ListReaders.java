@@ -45,19 +45,28 @@ public class ListReaders {
 
 	public void addReader(final String lastName, final String firstName, 
 			final String middleName, final String birthDate) {
-		if(size > 0) {
-			for (int i = 0; i < size; i++) {
-				if(equalReaders(readers[i], lastName, firstName, middleName, birthDate)) {
-					return;
+		// Проверяем пришли нам валидные данные или нет.
+		// Если данные валидны, то создаём нового читателя в массиве
+		// Если данные не валидны, то выходим из метода.
+		if (lastName != null && firstName != null && middleName != null) {
+			if (ReaderValidator.isValidationName(lastName) 
+					&& ReaderValidator.isValidationName(firstName)
+					&& ReaderValidator.isValidationName(middleName)) {
+				if(size > 0) {
+					for (int i = 0; i < size; i++) {
+						if(equalReaders(readers[i], lastName, firstName, middleName, birthDate)) {
+							return;
+						}
+					}
 				}
+				if(size >= readers.length-1) {
+					changeSizeOfArray(readers.length+10);
+				}
+				readers[size] = new Reader(lastName, firstName, middleName, birthDate);
+				readers[size].setNumber(generateNumberOfLibraryCard());
+				size++;
 			}
 		}
-		if(size >= readers.length-1) {
-			changeSizeOfArray(readers, readers.length*2);
-		}
-		readers[size] = new Reader(lastName, firstName, middleName, birthDate);
-		readers[size].setNumber(generateNumberOfLibraryCard());
-		size++;
 	}
 	
 	private boolean equalReaders(final Reader reader, final String lastName, 
@@ -72,7 +81,7 @@ public class ListReaders {
 			}
 	}
 	
-	private void changeSizeOfArray(final Reader[] copyReaders, final int newSize) {
+	private void changeSizeOfArray(final int newSize) {
 		Reader[] result = new Reader[newSize];
 		if(newSize >= readers.length) {
 			readers = copy(result, readers.length);

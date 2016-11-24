@@ -4,17 +4,17 @@ public class MainReaders {
 
 	public static void main(final String[] args) {
 		ListReaders list = new ListReaders(5);
-		list.addReader(null, "Людмила", "Юрьевна", "13.04.1993");
-		list.getReader(0).setFaculty("Компьютерных технологий");
-		list.getReader(0).setPhoneNumber("+45063100073");
+		list.addReader("Лыска", "Людмила", "Юрьевна", "13.04.1993");
+		list.getReader(list.size()-1).setFaculty("Компьютерных технологий");
+		list.getReader(list.size()-1).setPhoneNumber("+380631000703");
 		
 		list.addReader("Ищенко", "Денис", "Петрович", "18.11.1991");
-		list.getReader(1).setFaculty("Юридический");
+		list.getReader(list.size()-1).setFaculty("Юридический");
 		
 		
 		list.addReader("Ищенко", "Юлия", "Петровна", "10.01.1996");
-		list.getReader(2).setFaculty("Юридический");
-		list.getReader(2).setPhoneNumber("+38097435591");
+		list.getReader(list.size()-1).setFaculty("Юридический");
+		list.getReader(list.size()-1).setPhoneNumber("+38097435591");
 		
 		
 		showList(list);
