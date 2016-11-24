@@ -49,9 +49,10 @@ public class ListReaders {
 		// Если данные валидны, то создаём нового читателя в массиве
 		// Если данные не валидны, то выходим из метода.
 		if (lastName != null && firstName != null && middleName != null) {
-			if (ReaderValidator.isValidationName(lastName) 
-					&& ReaderValidator.isValidationName(firstName)
-					&& ReaderValidator.isValidationName(middleName)) {
+			if (ReaderValidator.isValidName(lastName)
+					&& ReaderValidator.isValidName(firstName)
+					&& ReaderValidator.isValidName(middleName)
+					&& ReaderValidator.isValidDate(birthDate)) {
 				if(size > 0) {
 					for (int i = 0; i < size; i++) {
 						if(equalReaders(readers[i], lastName, firstName, middleName, birthDate)) {

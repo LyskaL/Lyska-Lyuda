@@ -12,13 +12,16 @@ public class Reader {
 
 	public Reader (final String lastName, final String firstName, 
 			final String middleName, final String birthDate) {
-		if (lastName != null && firstName != null && middleName != null) {
-			if(ReaderValidator.isValidationName(lastName)
-					&& ReaderValidator.isValidationName(firstName)
-					&& ReaderValidator.isValidationName(middleName)) {
+		if (lastName != null && firstName != null 
+				&& middleName != null && birthDate != null) {
+			if(ReaderValidator.isValidName(lastName)
+					&& ReaderValidator.isValidName(firstName)
+					&& ReaderValidator.isValidName(middleName)
+					&& ReaderValidator.isValidDate(birthDate)) {
 				this.lastName = lastName;
 				this.firstName = firstName;
 				this.middleName = middleName;
+				this.birthDate = birthDate;
 			} else {
 				return;
 			}
@@ -26,7 +29,6 @@ public class Reader {
 			return;
 		}
 		
-		this.setBirthDate(birthDate);
 		this.faculty = "";
 		this.phoneNumber = "";
 	}
@@ -69,7 +71,7 @@ public class Reader {
 
 	public void setPhoneNumber(final String phoneNumber) {
 		if(phoneNumber != null){
-			if(ReaderValidator.isValidationPhone(phoneNumber)) {
+			if(ReaderValidator.isValidPhone(phoneNumber)) {
 				this.phoneNumber = phoneNumber;
 			}
 		}
@@ -78,10 +80,4 @@ public class Reader {
 	public String getBirthDate() {
 		return birthDate;
 	}
-
-	private void setBirthDate(final String birthDate) {
-		//TODO валидность даты
-		this.birthDate = birthDate;
-	}
-	
 }
