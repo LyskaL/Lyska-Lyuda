@@ -184,19 +184,6 @@ public class List {
 			}
 		}
 	}
-
-	/**
-	 * Выводим информацию списка на консоль.
-	 */
-	public void printList () {
-		if(_size > 0){
-			ListElement temp = _head;
-			while (temp != null) {
-				System.out.print(temp.getData() + " ");
-			}
-			System.out.println();
-		}
-	}
 	
 	public int size() {
 		return _size;
