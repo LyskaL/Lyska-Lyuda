@@ -132,7 +132,7 @@ public class AccrualScholarshipsToStudents {
 	 * 	 студент не получает степендию.
 	 */
 	public static int getAllowance(final Student student) {
-		if (student.getCounterEvaluations() >= student.MIN_NUMBER) {
+		if (student.getCounterEvaluations() >= Student.MIN_NUMBER) {
 			int excellent = 0;
 			int good = 0;
 			int satisfactory = 0;
