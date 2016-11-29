@@ -32,7 +32,7 @@ public class Rectangle {
 	}
 	
 	public Rectangle(final Point topLeft, final Point bottomRight) {
-		if (topLeft == null && bottomRight == null) {
+		if (topLeft == null || bottomRight == null) {
 			init(0, 0, 0, 0);
 		} else {
 			init(topLeft.getX(), topLeft.getY(), bottomRight.getX(), bottomRight.getY());
