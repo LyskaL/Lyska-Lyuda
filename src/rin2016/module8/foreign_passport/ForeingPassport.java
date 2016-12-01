@@ -13,13 +13,21 @@ public class ForeingPassport extends Passport {
 			 final String nationality) {
 		super(firstName, lastName, middleName, 
 			  birthdate, address, nationality);
+		setNumber();
 	}
-	
+
 	public ForeingPassport(final Passport passport) {
-		//проверить на null?
+		//TODO проверить на null?
 		this(passport.get_firstName(), passport.get_lastName(),
 			 passport.get_middleName(), passport.get_birthdate(),
 			 passport.get_address(), passport.get_nationality());
+	}
+	
+	private void setNumber() {
+		if(_number == null) {
+			int temp = (int)(Math.random()*90000 - 10000);
+			_number = "AP" + Integer.toString(temp);
+		}
 	}
 
 	public Visa get_visa(final int index) {
@@ -40,5 +48,10 @@ public class ForeingPassport extends Passport {
 		return counterVisa;
 	}
 	
-	
+	public String toStringForeingPassport() {
+		StringBuilder text = new StringBuilder(toString());
+		text = text.append("\nForeingPassport number: " + _number);
+		return text.toString();
+	}
+
 }

@@ -15,21 +15,18 @@ public class Passport {
 					 final String birthdate,
 					 final String address,
 					 final String nationality) {
-		try {
-			if (ReaderValidator.isValidName(firstName) && 
-				ReaderValidator.isValidName(lastName) && 
-				ReaderValidator.isValidName(middleName) && 
-				ReaderValidator.isValidDate(birthdate) &&
-				// проверка на адресс
-				ReaderValidator.isValidName(nationality)) {
-
-			} else {
-				throw new IllegalArgumentException("Не валидный аргумент!");
-			}
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.toString());
-		}
 		
+		if (ReaderValidator.isValidPassport(firstName, lastName, middleName, 
+											birthdate, address, nationality)) {
+			_firstName = firstName;
+			_lastName = lastName;
+			_middleName = middleName;
+			_birthdate = birthdate;
+			_address = address;
+			_nationality = nationality;
+		} else {
+			throw new IllegalArgumentException("Не валидный аргумент!");
+		}
 	}
 
 	public String get_firstName() {
@@ -55,4 +52,13 @@ public class Passport {
 	public String get_nationality() {
 		return _nationality;
 	}
+
+	@Override
+	public String toString() {
+		return "\nFull name: " +_lastName + " " + _firstName + " " + _middleName + 
+			   "\nBirthdate: " + _birthdate + "\nNationality: " + _nationality + 
+			   "\nAddress: " + _address;
+	}
+	
+	
 }

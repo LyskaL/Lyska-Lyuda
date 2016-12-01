@@ -17,7 +17,7 @@ public class ReaderValidator {
 		if (string == null) {
 			return false;
 		}
-		Pattern p = Pattern.compile("[A-Я]{1}[а-я]+");
+		Pattern p = Pattern.compile("[A-Яа-я]+");
 		Matcher m = p.matcher(string);
 		return m.matches();
 	}
@@ -32,5 +32,22 @@ public class ReaderValidator {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+	
+	public static boolean isValidPassport(final String firstName, 
+										  final String lastName, 
+										  final String middleName,
+										  final String birthdate, 
+										  final String address, 
+										  final String nationality) {
+		if (ReaderValidator.isValidName(firstName) && 
+			ReaderValidator.isValidName(lastName) && 
+			ReaderValidator.isValidName(middleName) && 
+			ReaderValidator.isValidDate(birthdate) &&
+			// TODO проверка на адресс
+			ReaderValidator.isValidName(nationality)) {
+			return true;
+		}
+		return false;
 	}
 }
