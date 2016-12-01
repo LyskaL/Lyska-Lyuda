@@ -29,27 +29,27 @@ public class Passport {
 		}
 	}
 
-	public String get_firstName() {
+	public String getFirstName() {
 		return _firstName;
 	}
 
-	public String get_lastName() {
+	public String getLastName() {
 		return _lastName;
 	}
 
-	public String get_middleName() {
+	public String getMiddleName() {
 		return _middleName;
 	}
 
-	public String get_birthdate() {
+	public String getBirthdate() {
 		return _birthdate;
 	}
 
-	public String get_address() {
+	public String getAddress() {
 		return _address;
 	}
 
-	public String get_nationality() {
+	public String getNationality() {
 		return _nationality;
 	}
 
@@ -59,6 +59,4 @@ public class Passport {
 			   "\nBirthdate: " + _birthdate + "\nNationality: " + _nationality + 
 			   "\nAddress: " + _address;
 	}
-	
-	
 }

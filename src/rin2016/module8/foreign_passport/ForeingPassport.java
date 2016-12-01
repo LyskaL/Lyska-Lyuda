@@ -3,6 +3,7 @@ package rin2016.module8.foreign_passport;
 public class ForeingPassport extends Passport {
 	private Visa[] _visa;
 	private int counterVisa;
+	
 	private String _number;
 	
 	public ForeingPassport(final String firstName,
@@ -18,9 +19,9 @@ public class ForeingPassport extends Passport {
 
 	public ForeingPassport(final Passport passport) {
 		//TODO проверить на null?
-		this(passport.get_firstName(), passport.get_lastName(),
-			 passport.get_middleName(), passport.get_birthdate(),
-			 passport.get_address(), passport.get_nationality());
+		this(passport.getFirstName(), passport.getLastName(),
+			 passport.getMiddleName(), passport.getBirthdate(),
+			 passport.getAddress(), passport.getNationality());
 	}
 	
 	private void setNumber() {
@@ -30,17 +31,21 @@ public class ForeingPassport extends Passport {
 		}
 	}
 
-	public Visa get_visa(final int index) {
-		//проверка
-		return _visa[index];
+	public Visa getVisa(final int index) {
+		if(index >= 0 && index < counterVisa) {
+			return _visa[index];
+		}
+		return null;
 	}
 
-	public void set_visa(final Visa _visa, final int index) {
-		//проверка
-		this._visa[index] = _visa;
+	public void setVisa(final Visa visa, final int index) {
+		if(index >= 0 && index <= counterVisa) {
+			_visa[index] = visa; //TODO копировать?
+			counterVisa++;
+		}
 	}
 
-	public String get_number() {
+	public String getNumber() {
 		return _number;
 	}
 
