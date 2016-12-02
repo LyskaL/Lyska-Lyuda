@@ -3,19 +3,29 @@ package rin2016.module8.foreign_passport;
 public class Main {
 
 	public static void main(final String[] args) {
-		Visa v = new Visa(TypeVisa.TRAVEL);
-		
-		
-		
-		/*Passport p = null;
-		if(ReaderValidator.isValidPassport("Lyska", "Lyuda", "Yuriivna", "13.02.1993", "Ukraine, Dnepr, Topol-2", "ukrainian")) {
-			p = new Passport("Lyska", "Lyuda", "Yuriivna", "13.02.1993", "Ukraine, Dnepr, Topol-2", "ukrainian");
+		Passport p = null;
+		try{
+			p = new Passport("Lyska", "Lyuda", "Yuriivna", "13.02.1993", 
+							 "Ukraine, Dnepr, Topol-2", "ukrainian");
+		} catch (IllegalArgumentException err) {
+			System.out.println("В конструктор паспорта "
+					+ "переданы не валидные данные!");
 		}
-		//System.out.println(p.toString());
-		ForeingPassport fp = new ForeingPassport(p);
-		System.out.println(fp.toStringForeingPassport());*/
 		
+		Visa v1 = new Visa(TypeVisa.TRAVEL);
+		Visa v2 = new Visa(TypeVisa.STUDENT);
+		Visa v3 = new Visa(TypeVisa.WORKING);
 		
+		ForeingPassport fp = null;
+		try{
+			fp = new ForeingPassport(p);
+			fp.setVisa(v1);
+			fp.setVisa(null);
+			fp.setVisa(v3);
+			System.out.println(fp.toString());
+		} catch (IllegalArgumentException err) {
+			System.out.println("В конструктор загранпаспорта "
+							+ "переданы не валидные данные!");
+		}
 	}
-
 }

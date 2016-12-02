@@ -12,16 +12,16 @@ public class Visa {
 	
 	private static final SimpleDateFormat formatDate = new SimpleDateFormat("dd.MM.yyyy");
 	private static final int COUNTER_DAY_TRANSIT = 2;
-	private static final int COUNTER_MONTH_TRAVEL = 3;
-	private static final int COUNTER_MONTH_WORKING = 12;
-	private static final int COUNTER_MONTH_STUDENT = 12;
-	private static final int COUNTER_YEAR_IMMIGRATION = 5;
+	private static final int COUNTER_DAY_TRAVEL = 90;
+	private static final int COUNTER_DAY_STUDENT = 180;
+	private static final int COUNTER_DAY_WORKING = 360;
+	private static final int COUNTER_YEAR_IMMIGRATION = 3;
 	
 	public Visa (final TypeVisa type) {
-		if(_type != null) {
+		if(type != null) {
 			_type = type;
-			setDateOpening();
-			setDateClose();
+			countDateOpening();
+			countDateClose();
 		}
 	}
 	
@@ -37,29 +37,55 @@ public class Visa {
 		return _dateClose;
 	}
 	
-	private void setDateOpening() {
+	private void countDateOpening() {
 		Date d = new Date();
 		_dateOpening = formatDate.format(d);
 	}
 	
-	private void setDateClose() {
+	private void countDateClose() {
 		int day = Integer.parseInt(_dateOpening.substring(0, 2));
 		int month = Integer.parseInt(_dateOpening.substring(3, 5));
 		int year = Integer.parseInt(_dateOpening.substring(6, _dateOpening.length()));
-		
-		if(_type == TypeVisa.TRANSIT) {
-			day += COUNTER_DAY_TRANSIT; 
-		} else if(_type == TypeVisa.TRAVEL) {
-			month += COUNTER_MONTH_TRAVEL;
+
+		if (_type == TypeVisa.TRANSIT) {
+			day += COUNTER_DAY_TRANSIT;
+		} else if (_type == TypeVisa.TRAVEL) {
+			day += COUNTER_DAY_TRAVEL;
 		} else if (_type == TypeVisa.WORKING) {
-			month += COUNTER_MONTH_WORKING;
+			day += COUNTER_DAY_WORKING;
 		} else if (_type == TypeVisa.STUDENT) {
-			month += COUNTER_MONTH_STUDENT;
-		} else if (_type == TypeVisa.IMMIGRATION){
+			day += COUNTER_DAY_STUDENT;
+		} else if (_type == TypeVisa.IMMIGRATION) {
 			year += COUNTER_YEAR_IMMIGRATION;
 		}
-		
+
 		Calendar cal = new GregorianCalendar(year, month-1, day);
 		_dateClose = formatDate.format(cal.getTime());
 	}
+
+	protected void setDateOpening(final String dateOpening) {
+		if(dateOpening != null) {
+			_dateOpening = dateOpening;
+		}
+	}
+	
+	protected void setDateClose(final String dateClose) {
+		if(dateClose != null) {
+			_dateClose = dateClose;
+		}
+	}
+	
+	public Visa getVisa(){
+		Visa v = new Visa(_type);
+		v.setDateClose(_dateClose);
+		v.setDateOpening(_dateOpening);
+		return v;
+	}
+
+	@Override
+	public String toString() {
+		return "\nType Visa: " + _type + "\tOpening: " + _dateOpening + "\tClose: " + _dateClose;
+	}
+	
+	
 }

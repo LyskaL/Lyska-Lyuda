@@ -9,6 +9,8 @@ public class Passport {
 	private String _address;
 	private String _nationality;
 	
+	public Passport() {}
+	
 	public Passport (final String firstName,
 					 final String lastName,
 					 final String middleName,
@@ -16,8 +18,16 @@ public class Passport {
 					 final String address,
 					 final String nationality) {
 		
-		if (ReaderValidator.isValidPassport(firstName, lastName, middleName, 
-											birthdate, address, nationality)) {
+		init(firstName, lastName, middleName, birthdate, address, nationality);
+	}
+	
+	protected void init(final String firstName,
+			 			final String lastName,
+			 			final String middleName,
+			 			final String birthdate,
+			 			final String address,
+			final String nationality) {
+		if (ReaderValidator.isValidPassport(firstName, lastName, middleName, birthdate, address, nationality)) {
 			_firstName = firstName;
 			_lastName = lastName;
 			_middleName = middleName;
@@ -27,6 +37,7 @@ public class Passport {
 		} else {
 			throw new IllegalArgumentException("Не валидный аргумент!");
 		}
+
 	}
 
 	public String getFirstName() {
