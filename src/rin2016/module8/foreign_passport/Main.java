@@ -21,6 +21,7 @@ public class Main {
 			fp = new ForeingPassport(p);
 			fp.setVisa(v1);
 			fp.setVisa(null);
+			fp.setVisa(v2);
 			fp.setVisa(v3);
 			System.out.println(fp.toString());
 		} catch (IllegalArgumentException err) {
