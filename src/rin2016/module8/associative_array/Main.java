@@ -3,32 +3,49 @@ package rin2016.module8.associative_array;
 public class Main {
 	
 	public static void main(final String[] args) {
-		Group bu32 = new Group("BU-32");
+		ElementArray groupBU32 = new ElementArray("BU-32", 10);
+		ElementArray groupLaw2 = new ElementArray("Law-2", 5);
 		try{
 			Student iDenis = new Student("Ivanov", "Denis", "Vasilyevich", "23.03.1990");
-			bu32.addStudent(iDenis);
+			groupBU32.addStudent(iDenis);
 		} catch(IllegalArgumentException ae) {
 			System.err.println("Данные не валидны!");
 		}
 
 		try {
 			Student zAlexey = new Student("Zubko", "Alexey", "Petrov", "02.05.1991");
-			bu32.addStudent(zAlexey);
+			groupBU32.addStudent(zAlexey);
+			groupLaw2.addStudent(zAlexey);
 		} catch (IllegalArgumentException ae) {
 			System.err.println("Данные не валидны!");
 		}
 
 		try {
 			Student mMaria = new Student("Makarova", "Maria", "Ivanova", "12.11.1992");
-			bu32.addStudent(mMaria);
+			groupLaw2.addStudent(mMaria);
 		} catch (IllegalArgumentException ae) {
 			System.err.println("Данные не валидны!");
 		}
-		
-		show(bu32);
+		AssociativeArray groups = new AssociativeArray(1);
+		groups.add(groupBU32);
+		groups.add(groupLaw2);
+		show(groups);
+		//groups.search("Law-2").removeStudent("Zubko", "Alexey");
+		groups.remove("Law-2");
+		groups.remove("BU-32");
+		show(groups);
+	}
+	public static void show(final AssociativeArray groups){
+		if(groups != null) {
+			System.out.println("Groups: " + groups.size());
+			for (int i = 0; i < groups.size(); i++) {
+				show(groups.getElementArray(i));
+				System.out.println();
+			}
+		}
 	}
 	
-	public static void show(final Group group) {
+	public static void show(final ElementArray group) {
 		if(group != null) {
 			System.out.println("Number group: " + group.getNumber());
 			System.out.println("Students in the group: " + group.size());

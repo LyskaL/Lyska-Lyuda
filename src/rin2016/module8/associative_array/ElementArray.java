@@ -1,17 +1,23 @@
 package rin2016.module8.associative_array;
 
-public class Group {
-	private String _number;
+public class ElementArray {
+	
+	private String _numberGroup;
 	private Student[] _students;
 	private int _size;
+	
 	private static final int DEFAULT_SIZE_GROUP = 30;
 	private static final int SEARCH_ERROR = -1;
 	
-	public Group(final String number) {
-		init(number, DEFAULT_SIZE_GROUP);
+	public ElementArray(final String numberGroup) {
+		init(numberGroup, DEFAULT_SIZE_GROUP);
 	}
 	
-	public Group(final int sizeGroup) {
+	public ElementArray(final String numberGroup, final int sizeGroup) {
+		init(numberGroup, sizeGroup);
+	}
+	
+	public ElementArray(final int sizeGroup) {
 		init("", sizeGroup);
 	}
 	
@@ -22,12 +28,12 @@ public class Group {
 		if (sizeGroup <= 0) {
 			sizeGroup = DEFAULT_SIZE_GROUP;
 		}
-		_number = number;
+		_numberGroup = number;
 		_students = new Student[sizeGroup];
 	}
 	
 	public String getNumber() {
-		return _number;
+		return _numberGroup;
 	}
 
 	public Student getStudents(final int index) {
@@ -93,5 +99,13 @@ public class Group {
 			_students[indexSecondEl] = _students[indexFirstEl];
 			_students[indexFirstEl] = temp;
 		}
+	}
+	
+	public ElementArray getElementArray() {
+		ElementArray temp = new ElementArray(_numberGroup, DEFAULT_SIZE_GROUP);
+		for (int i = 0; i < _size; i++) {
+			temp.addStudent(_students[i].getStudent());
+		}
+		return temp;
 	}
 }
