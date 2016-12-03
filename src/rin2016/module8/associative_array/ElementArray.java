@@ -38,7 +38,7 @@ public class ElementArray {
 
 	public Student getStudents(final int index) {
 		if(index >= 0 && index < _size) {
-			return _students[index].getStudent(); //return copy
+			return _students[index];
 		}
 		return null;
 	}
@@ -46,7 +46,7 @@ public class ElementArray {
 	public void addStudent(final Student student) {
 		if(student != null) {
 			if(_size < DEFAULT_SIZE_GROUP) {
-				_students[_size] = student.getStudent();
+				_students[_size] = student.getCopyStudent();
 				_size++;
 				sort();
 			}
@@ -101,10 +101,10 @@ public class ElementArray {
 		}
 	}
 	
-	public ElementArray getElementArray() {
+	public ElementArray getCopyElementArray() {
 		ElementArray temp = new ElementArray(_numberGroup, DEFAULT_SIZE_GROUP);
 		for (int i = 0; i < _size; i++) {
-			temp.addStudent(_students[i].getStudent());
+			temp.addStudent(_students[i].getCopyStudent());
 		}
 		return temp;
 	}

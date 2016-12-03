@@ -17,7 +17,7 @@ public class AssociativeArray {
 		if(_size >= _groups.length) {
 			_groups = increaseSize();
 		}
-		_groups[_size] = group.getElementArray();
+		_groups[_size] = group.getCopyElementArray();
 		_size++;
 	}
 	
@@ -32,7 +32,7 @@ public class AssociativeArray {
 	public ElementArray search(final String key) {
 		int index = searchIndexElement(key);
 		if(index != SEARCH_ERROR){
-			return _groups[index].getElementArray();
+			return _groups[index];
 		}
 		return null;
 	}
@@ -64,7 +64,7 @@ public class AssociativeArray {
 	
 	public ElementArray getElementArray(final int index){
 		if(index >= 0 && index < _size){
-			return _groups[index].getElementArray();
+			return _groups[index];
 		}
 		return null;
 	}

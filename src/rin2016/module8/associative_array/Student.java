@@ -9,7 +9,7 @@ public class Student extends Person {
 		super(lastName, firstName, middleName, birthday);
 	}
 	
-	public Student getStudent() {
+	public Student getCopyStudent() {
 		return new Student(getLastName(), getFirstName(), getMiddleName(), getBirthday());
 	}
 

@@ -30,9 +30,8 @@ public class Main {
 		groups.add(groupBU32);
 		groups.add(groupLaw2);
 		show(groups);
-		//groups.search("Law-2").removeStudent("Zubko", "Alexey");
-		groups.remove("Law-2");
-		groups.remove("BU-32");
+		groups.search("Law-2").removeStudent("Zubko", "Alexey");
+		
 		show(groups);
 	}
 	public static void show(final AssociativeArray groups){
@@ -42,6 +41,7 @@ public class Main {
 				show(groups.getElementArray(i));
 				System.out.println();
 			}
+			System.out.println("_______________________________________");
 		}
 	}
 	
