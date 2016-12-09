@@ -1,4 +1,4 @@
-package rin2016.module8.associative_array;
+package lyskal.module8.associative_array;
 
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 public class Validator {
 	private static final String REGEX_FOR_NAME = "^[A-z][a-z]+";
+	@SuppressWarnings("serial")
 	private static final SimpleDateFormat DATE_FORMAT = 
 			new SimpleDateFormat("dd.MM.yyyy") {{setLenient(false);}};
 

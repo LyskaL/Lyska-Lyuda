@@ -1,4 +1,4 @@
-package rin2016.module8.associative_array;
+package lyskal.module8.associative_array;
 
 public abstract class Person {
 	private String _firstName;
