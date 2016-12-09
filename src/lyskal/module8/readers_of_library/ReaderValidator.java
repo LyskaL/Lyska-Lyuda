@@ -8,6 +8,7 @@ public class ReaderValidator {
 
 	private static final String REGEX_FOR_NAME = "^[А-Я][а-я]+";
 	private static final String REGEX_FOR_PHONE = "^\\+380[0-9]{9}$";
+	@SuppressWarnings("serial")
 	private static final SimpleDateFormat DATE_FORMAT = 
 			new SimpleDateFormat("dd.MM.yyyy") {{ setLenient(false); }};
 	
