@@ -27,7 +27,7 @@ public class Passport {
 			 			final String birthdate,
 			 			final String address,
 			final String nationality) {
-		if (ReaderValidator.isValidPassport(firstName, lastName, middleName, birthdate, address, nationality)) {
+		if (Validator.isValidPassport(firstName, lastName, middleName, birthdate, address, nationality)) {
 			_firstName = firstName;
 			_lastName = lastName;
 			_middleName = middleName;

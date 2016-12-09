@@ -4,7 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ReaderValidator {
+public class Validator {
+	@SuppressWarnings("serial")
 	private static final SimpleDateFormat DATE_FORMAT = 
 			new SimpleDateFormat("dd.MM.yyyy") 
 			{{ setLenient(false); }};
@@ -40,12 +41,12 @@ public class ReaderValidator {
 										  final String birthdate, 
 										  final String address, 
 										  final String nationality) {
-		if (ReaderValidator.isValidName(firstName) && 
-			ReaderValidator.isValidName(lastName) && 
-			ReaderValidator.isValidName(middleName) && 
-			ReaderValidator.isValidDate(birthdate) &&
+		if (Validator.isValidName(firstName) && 
+			Validator.isValidName(lastName) && 
+			Validator.isValidName(middleName) && 
+			Validator.isValidDate(birthdate) &&
 			// TODO проверка на адресс
-			ReaderValidator.isValidName(nationality)) {
+			Validator.isValidName(nationality)) {
 			return true;
 		}
 		return false;
