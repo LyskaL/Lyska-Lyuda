@@ -1,6 +1,6 @@
 package lyskal.module8.wokers;
 
-public abstract class Worker extends Person{
+public abstract class Worker extends Person implements Comparable<Worker>{
 	private String _position;
 	public static final String TRAINEE = "trainee";
 	
@@ -31,7 +31,20 @@ public abstract class Worker extends Person{
 
 	@Override
 	public String toString() {
-		return "Worker: " + super.toString() +"\t"+ _position + "\t"+ getWage() + "\n";
+		return "Worker: " + super.toString() +"\t"+ getWage() + "\t"+ _position;
+	}
+
+	@Override
+	public int compareTo(final Worker worker) {
+		int thisWage = getWage();
+		int workerWage = worker.getWage();
+		
+		if(thisWage == workerWage) {
+			return getName().compareTo(worker.getName());
+		} else if (thisWage > workerWage) {
+			return -1;
+		}
+		return 1;
 	}
 	
 }
