@@ -15,9 +15,7 @@ public class Main {
 		workers.add(alex);
 		workers.add(mikola);
 		workers.add(max);
-		
 		workers.sort();
-		Interface.show(workers);
-		
+		Interface.welcomeWithUser(workers);
 	}
 }

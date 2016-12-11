@@ -1,5 +1,7 @@
 package lyskal.module8.wokers;
 
+import java.util.Scanner;
+
 public class Interface {
 	
 	public static void show(final Workers workers) {
@@ -8,5 +10,23 @@ public class Interface {
 		}
 	}
 	
-	
+	public static void welcomeWithUser(final Workers workers){
+		System.out.println("To output the database about workers?");
+		System.out.println("1. To display all.\n2. Choose whom to display.\n3. No.");
+		Scanner scanner = new Scanner(System.in);
+		int answer = scanner.nextInt();
+		switch (answer) {
+		case 1: 
+			show(workers);
+			break;
+		case 2: 
+			System.out.println("How many workers to display?");
+			int numbers = scanner.nextInt();
+			System.out.println("How many to displace to the database?");
+			int displace = scanner.nextInt();
+			show(Database.getWorkers(workers, displace, numbers));
+			break;
+		}
+		scanner.close();
+	}
 }
