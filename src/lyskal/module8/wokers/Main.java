@@ -1,5 +1,11 @@
 package lyskal.module8.wokers;
 
+import lyskal.module8.wokers.entities.Worker;
+import lyskal.module8.wokers.entities.WorkerOnRate;
+import lyskal.module8.wokers.entities.WorkerWithHourlyPay;
+import lyskal.module8.wokers.entities.Workers;
+import lyskal.module8.wokers.servises.Interface;
+
 public class Main {
 
 	public static void main(final String[] args) {

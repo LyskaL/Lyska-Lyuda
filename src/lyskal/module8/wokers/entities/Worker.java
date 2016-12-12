@@ -1,4 +1,7 @@
-package lyskal.module8.wokers;
+package lyskal.module8.wokers.entities;
+
+import lyskal.module8.wokers.servises.Validator;
+
 
 public abstract class Worker extends Person implements Comparable<Worker>{
 	private String _position;

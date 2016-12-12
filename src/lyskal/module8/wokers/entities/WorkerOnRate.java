@@ -1,4 +1,4 @@
-package lyskal.module8.wokers;
+package lyskal.module8.wokers.entities;
 
 public class WorkerOnRate extends Worker{
 	private final int MIN_RATE = 1000;

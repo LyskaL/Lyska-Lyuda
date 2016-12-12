@@ -1,4 +1,4 @@
-package lyskal.module8.wokers;
+package lyskal.module8.wokers.entities;
 
 public class WorkerWithHourlyPay extends Worker {
 	private static int MIN_PAY_FOR_HOUR = 10;

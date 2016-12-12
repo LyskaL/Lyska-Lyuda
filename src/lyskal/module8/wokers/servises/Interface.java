@@ -1,6 +1,9 @@
-package lyskal.module8.wokers;
+package lyskal.module8.wokers.servises;
 
 import java.util.Scanner;
+
+import lyskal.module8.wokers.entities.Worker;
+import lyskal.module8.wokers.entities.Workers;
 
 public class Interface {
 	
@@ -20,9 +23,9 @@ public class Interface {
 			show(workers);
 			break;
 		case 2: 
-			System.out.println("How many workers to display?");
+			System.out.print("How many workers to display? ");
 			int numbers = scanner.nextInt();
-			System.out.println("How many to displace to the database?");
+			System.out.print("How many to displace to the database? ");
 			int displace = scanner.nextInt();
 			show(Database.getWorkers(workers, displace, numbers));
 			break;
