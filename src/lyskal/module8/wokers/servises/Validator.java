@@ -18,7 +18,7 @@ public class Validator {
 			new SimpleDateFormat("dd.MM.yyyy") {{setLenient(false);}};
 	
 	/**
-	 * To check correctness of input of a name of the worker.
+	 * Check correctness of input of a name of the worker.
 	 * 
 	 * @param name - name of worker
 	 * @return
@@ -39,9 +39,9 @@ public class Validator {
 	}
 	
 	/**
-	 * To check a date correctness.
+	 * Check a date correctness.
 	 * 
-	 * @param date - birthdate of workers
+	 * @param date - birth date of workers
 	 * @return 
 	 * true - date is correct;
 	 * false - date is not correct.

@@ -17,7 +17,7 @@ public class Workers {
 	}
 	
 	/**
-	 * To add the worker to the database.
+	 * Add the worker to the database.
 	 * 
 	 * @param worker - whom we add.
 	 */
@@ -28,7 +28,7 @@ public class Workers {
 	}
 	
 	/**
-	 * To remove the worker to the database.
+	 * Remove the worker to the database.
 	 * 
 	 * @param worker - whom we remove.
 	 */
@@ -39,7 +39,7 @@ public class Workers {
 	}
 	
 	/**
-	 * To get the list of workers.
+	 * Get the list of workers.
 	 * 
 	 * @return unmodifiable copy of database
 	 */
@@ -48,7 +48,7 @@ public class Workers {
 	}
 	
 	/**
-	 * To get the list size.
+	 * Get the list size.
 	 * 
 	 * @return size of list
 	 */

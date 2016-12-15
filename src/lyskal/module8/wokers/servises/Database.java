@@ -13,7 +13,7 @@ import lyskal.module8.wokers.entities.Workers;
  */
 public class Database{
 	/**
-	 * To get the list with the set displace of
+	 * Get the list with the set displace of
 	 * workers and to return it.
 	 * 
 	 * @param workers - database of workers.
@@ -26,7 +26,7 @@ public class Database{
 	}
 	
 	/**
-	 * To get the list with the necessary number of
+	 * Get the list with the necessary number of
 	 * workers and to return it.
 	 * 
 	 * @param workers - database of workers.
