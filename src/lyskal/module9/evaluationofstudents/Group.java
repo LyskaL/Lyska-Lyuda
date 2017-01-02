@@ -21,18 +21,26 @@ public class Group {
 	
 	public void add(final String lastName, 
 					final List<Evaluation> evaluations){
-		_group.put(lastName, evaluations);
+		_group.put(lastName, Collections.unmodifiableList(evaluations));
 	}
 	
 	public void remove(final String lastName) {
 		_group.remove(lastName);
 	}
 	
+	public String getKey(final String lastName) {
+		return null;
+	}
+	
 	public List<Evaluation> getValue(final String lastName) {
-		return Collections.unmodifiableList(_group.get(lastName));
+		return _group.get(lastName);
 	}
 	
 	public int size() {
 		return _group.size();
+	}
+	
+	public Map<String, List<Evaluation>> getGroup() {
+		return Collections.unmodifiableMap(_group);
 	}
 }
