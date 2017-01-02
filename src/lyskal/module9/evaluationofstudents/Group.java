@@ -1,4 +1,4 @@
-package lyskal.module9;
+package lyskal.module9.evaluationofstudents;
 
 import java.util.Collections;
 import java.util.HashMap;

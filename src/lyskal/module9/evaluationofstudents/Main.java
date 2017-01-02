@@ -1,4 +1,4 @@
-package lyskal.module9;
+package lyskal.module9.evaluationofstudents;
 
 import java.util.ArrayList;
 import java.util.List;

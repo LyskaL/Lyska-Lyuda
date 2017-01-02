@@ -1,4 +1,4 @@
-package lyskal.module9;
+package lyskal.module9.evaluationofstudents;
 
 public enum Evaluation {
 	ONE,
